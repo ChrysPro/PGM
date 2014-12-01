@@ -15,13 +15,11 @@ public class PGM {
      */
     public static void main(String[] args) {
         Read image = new Read("\\\\data-pfe\\ybellehi\\NetBeansProjects\\PGM\\src\\resources\\lena.pgm");
-        image.lecture("\\\\data-pfe\\ybellehi\\NetBeansProjects\\PGM\\src\\resources\\lena.pgm");
+        image.lecture();
         Histogramme histo = new Histogramme(image);
-        histo.creerHistogramme();
         System.out.println(histo.getHisto().getLargeur() + " " + histo.getHisto().getLongueur());
         for(int i=0;i<(histo.getHisto().getLargeur())*(histo.getHisto().getLongueur());i++) {
             System.out.println(histo.getHisto().getTableau().get(i));
-            System.out.println("to");
         }
         
     }

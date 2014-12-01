@@ -44,10 +44,10 @@ public class Histogramme {
             detail.add(i, 0);
         }
 System.out.println(image.getTableau().size());
-        for (int j = 0; j < image.getTableau().size(); j++) {
+        for (int j = 0; j < image.getTableau().size() ; j++) {
             
             detail.add(image.getTableau().get(j), detail.get(image.getTableau().get(j)) +  1);
-            System.out.println(detail.get(j));
+            //System.out.println(j);
         }
 
     
@@ -57,32 +57,31 @@ System.out.println(image.getTableau().size());
      * création d'histogramme au format image
      */
     public void creerHistogramme(){
-        creerDetail();
+        this.creerDetail();
         int max=0;
         for(int i=0;i<256;i++){
             if(detail.get(i)>max){
                 max=detail.get(i);
-                System.out.println("to");
             }
         }
+        System.out.println("max : " + max);
         histo.setNomfichier("histogramme");
-        int largeur=256*2;
+        int largeur=256;
         int longueur=max;
-        System.out.println(max);
         histo.setLargeur(largeur);
         histo.setLongueur(longueur);
         
         ArrayList<Integer> tableau = new ArrayList();
+        for(int k=0;k<longueur*largeur;k++){
+            tableau.add(k,0);
+        }
         for(int j=0;j<largeur;j++){
             for(int i=0;i<longueur;i++){
-                if(detail.get(j)<longueur-i){
-                    tableau.add(i*largeur+j, 0);
-                }else{
+                if(detail.get(j)>longueur-i){
                     tableau.add(i*largeur+j, 255);
                 }
             }
         }
-        
         histo.setTableau(tableau);
     }
 }
