@@ -120,7 +120,7 @@ public class Read {
      * @param buffer
      */
     public int creerObjet (String ligne, Read lect, int test) {
-            String delimiters = " .,;";
+            String delimiters = " .,;	";
             String mot;
             StringTokenizer tokenizer = new StringTokenizer(ligne, delimiters);
             mot = tokenizer.nextToken();
