@@ -86,7 +86,6 @@ public class Read {
         }
     }
     
-
     /**
      *Fonction qui permet de lire intégralement le fichier pgm et de l'insérer dans les attributs de la classe Read
      * @param filename
