@@ -12,11 +12,11 @@ import java.util.ArrayList;
  */
 public class Histogramme {
 
-    private PGM image;
-    private PGM histo;
+    private Read image;
+    private Read histo;
     private ArrayList<Integer> detail;
 
-    public Histogramme(PGM i) {
+    public Histogramme(Read i) {
         image = i;
     }
 
@@ -26,9 +26,9 @@ public class Histogramme {
             detail.add(i, 0);
         }
 
-        for (int j = 0; j < image.setArrayList.length(); j++) { //TODO jusqu'à la derniere valeur de l'ArrayList
-
-            detail.add(image.setArrayList.get(j), detail.get(image.setArrayList.get(j)) + 1);//TODO remplacer ArrayList par la fonction necessaire
+        for (int j = 0; j < image.getTableau().size(); j++) { //TODO jusqu'à la derniere valeur de l'ArrayList
+            
+            detail.add(image.getTableau().get(j), detail.get(image.getTableau().get(j)) +  1);//TODO remplacer ArrayList par la fonction necessaire
         }
     }
     
