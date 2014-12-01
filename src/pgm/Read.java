@@ -137,6 +137,7 @@ public class Read {
                      lect.largeur=Integer.parseInt(mot);
                      mot= tokenizer.nextToken();
                      lect.hauteur=Integer.parseInt(mot);
+                     System.out.println(mot);
                      test=2;
                      break;
                     } else if (test==2) {
@@ -147,9 +148,10 @@ public class Read {
                     lect.tableau.add(Integer.parseInt(mot));
                     while (tokenizer.hasMoreTokens()) {
                         mot = tokenizer.nextToken();
+                        lect.tableau.add(Integer.parseInt(mot));
                     }
                     
-                    lect.tableau.add(Integer.parseInt(mot));
+                    
                     break;}
             }
         return test;
@@ -168,7 +170,7 @@ public class Read {
             int test=0;
             BufferedReader buffer = new BufferedReader(new FileReader(filename));
              while ((ligne = buffer.readLine()) !=null){
-                System.out.println(ligne);
+                //System.out.println(ligne);
                test=creerObjet(ligne, lect, test);
                 }
              }
