@@ -31,6 +31,11 @@ public class Histogramme {
             detail.add(image.setArrayList.get(j), detail.get(image.setArrayList.get(j)) + 1);//TODO remplacer ArrayList par la fonction necessaire
         }
     }
+    
+    public void creerHistogramme(){
+        creerDetail();
+        //TODO écrire le PGM de l'histogramme
+    }
 }
 
 
