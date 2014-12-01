@@ -116,10 +116,9 @@ public class Read {
      *Lit une ligne du fichier pgm et rempli l'Arraylist en fonction
      * ainsi que les dimensions dans des attributs séparés
      * @param ligne
-     * @param lect
      * @param buffer
      */
-    public int creerObjet (String ligne, Read lect, int test) {
+    public int creerObjet (String ligne, int test) {
             String delimiters = " .,;	";
             String mot;
             StringTokenizer tokenizer = new StringTokenizer(ligne, delimiters);
@@ -134,9 +133,9 @@ public class Read {
                     break;
                 default:
                     if (test==1) {
-                     lect.largeur=Integer.parseInt(mot);
+                     this.largeur=Integer.parseInt(mot);
                      mot= tokenizer.nextToken();
-                     lect.hauteur=Integer.parseInt(mot);
+                     this.hauteur=Integer.parseInt(mot);
                      System.out.println(mot);
                      test=2;
                      break;
@@ -145,10 +144,10 @@ public class Read {
                         break;
                     }
                     else {
-                    lect.tableau.add(Integer.parseInt(mot));
+                    this.tableau.add(Integer.parseInt(mot));
                     while (tokenizer.hasMoreTokens()) {
                         mot = tokenizer.nextToken();
-                        lect.tableau.add(Integer.parseInt(mot));
+                        this.tableau.add(Integer.parseInt(mot));
                     }
                     
                     
@@ -159,11 +158,9 @@ public class Read {
     
     /**
      *Fonction qui permet de lire intégralement le fichier pgm et de l'insérer dans les attributs de la classe Read
-     * @param filename
-     * @return
      */
-    public Read lecture(String filename) {
-        Read lect=new Read(filename);
+    public void lecture() {
+        //Read lect=new Read(filename);
         try {
             String ligne;
             String mot;
@@ -171,13 +168,13 @@ public class Read {
             BufferedReader buffer = new BufferedReader(new FileReader(filename));
              while ((ligne = buffer.readLine()) !=null){
                 //System.out.println(ligne);
-               test=creerObjet(ligne, lect, test);
+               test=this.creerObjet(ligne, test);
                 }
              }
         catch (Exception e) {
             e.printStackTrace();
 }
-return lect;}
+   System.out.println(this.tableau.size());}
 }
     
 
