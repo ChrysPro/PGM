@@ -20,11 +20,11 @@ public class Read {
     /**
      * Le nom du fichier pgm à lire
      */
-    public String nomfichier;
+    public String filename;
     /**
      * longueur (hauteur) de l'image
      */
-    public int longueur;
+    public int hauteur;
     /**
      * largeur de l'image
      */
@@ -36,12 +36,12 @@ public class Read {
 
     /**
      * Le constructeur 
-     * @param nomfichier
+     * @param filename
      */
-    public Read(String nomfichier) {
-        this.nomfichier = nomfichier;
+    public Read(String filename) {
+        this.filename = filename;
         this.largeur=0;
-        this.longueur=0;
+        this.hauteur=0;
         this.tableau= new ArrayList();
     }
 
@@ -119,37 +119,40 @@ public class Read {
      * @param lect
      * @param buffer
      */
-    public void creerObjet (String ligne, Read lect, BufferedReader buffer) {
-        try {
-            String delimiters =" ";
+    public int creerObjet (String ligne, Read lect, int test) {
+            String delimiters = " .,;";
             String mot;
-            StringTokenizer tokenizer=new StringTokenizer(ligne, delimiters);
-            mot=tokenizer.nextToken();
-                switch (mot.toLowerCase()) {
-                    case "P2" : 
+            StringTokenizer tokenizer = new StringTokenizer(ligne, delimiters);
+            mot = tokenizer.nextToken();
+            switch (mot) {
+                case "P2":
+                    break;
+                //La ligne commençant par # annonce que la prochaine ligne concernera les dimensions de l'image
+                case "#":
+                // la variable test permet de considerer de maniere particulière les 2 lignes après le dièse.
+                        test=1;                
+                    break;
+                default:
+                    if (test==1) {
+                     lect.largeur=Integer.parseInt(mot);
+                     mot= tokenizer.nextToken();
+                     lect.hauteur=Integer.parseInt(mot);
+                     test=2;
+                     break;
+                    } else if (test==2) {
+                        test = 0;
                         break;
-                  //La ligne commençant par # annonce que la prochaine ligne concernera les dimensions de l'image
-                    case "#" :
-                        if ((ligne = buffer.readLine()) !=null) {
-                            tokenizer= new StringTokenizer (ligne, delimiters);
-                            mot=tokenizer.nextToken();
-                            lect.largeur=Integer.parseInt(mot);
-                            mot=tokenizer.nextToken();
-                            lect.longueur=Integer.parseInt(mot); 
-                  // On saute la ligne précisant la valeur max du niveau de gris (toujours 255)
-                            ligne=buffer.readLine();
-                        }
-                        break;
-                   default :
-                       lect.tableau.add(Integer.parseInt(mot));
-                       while (tokenizer.hasMoreTokens())
-                           mot=tokenizer.nextToken();
-                       lect.tableau.add(Integer.parseInt(mot));
-                           break;
+                    }
+                    else {
+                    lect.tableau.add(Integer.parseInt(mot));
+                    while (tokenizer.hasMoreTokens()) {
+                        mot = tokenizer.nextToken();
+                    }
+                    
+                    lect.tableau.add(Integer.parseInt(mot));
+                    break;}
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Read.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        return test;
     }
     
     /**
@@ -162,12 +165,15 @@ public class Read {
         try {
             String ligne;
             String mot;
-            BufferedReader buffer = new BufferedReader(new FileReader(nomfichier));
+            int test=0;
+            BufferedReader buffer = new BufferedReader(new FileReader(filename));
              while ((ligne = buffer.readLine()) !=null){
-               creerObjet(ligne, lect , buffer);
+                System.out.println(ligne);
+               test=creerObjet(ligne, lect, test);
                 }
              }
         catch (Exception e) {
+            e.printStackTrace();
 }
 return lect;}
 }
