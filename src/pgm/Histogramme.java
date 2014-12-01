@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class Histogramme {
 
     private Read image;
-    private Read histo;
-    private ArrayList<Integer> detail;
+    private Read histo = new Read("");
+    private ArrayList<Integer> detail= new ArrayList();
 
     /**
      *création d'un histogramme à partir d'une image
@@ -20,7 +20,7 @@ public class Histogramme {
      */
     public Histogramme(Read i) {
        image = i;
-       creerHistogramme();
+       this.creerHistogramme();
         }
 
     /**
@@ -39,16 +39,17 @@ public class Histogramme {
      */
     public void creerDetail() {
 
-        ArrayList<Integer> details = new ArrayList();
+  
         for (int i = 0; i < 256; i++) {
-            details.add(i, 0);
+            detail.add(i, 0);
         }
-
+System.out.println(image.getTableau().size());
         for (int j = 0; j < image.getTableau().size(); j++) {
             
-            details.add(image.getTableau().get(j), details.get(image.getTableau().get(j)) +  1);
+            detail.add(image.getTableau().get(j), detail.get(image.getTableau().get(j)) +  1);
+            System.out.println(detail.get(j));
         }
-        detail=details;
+
     
     }
     
@@ -56,19 +57,20 @@ public class Histogramme {
      * création d'histogramme au format image
      */
     public void creerHistogramme(){
-        Read histo1 = new Read("");
         creerDetail();
         int max=0;
         for(int i=0;i<256;i++){
             if(detail.get(i)>max){
                 max=detail.get(i);
+                System.out.println("to");
             }
         }
-        histo1.setNomfichier("histogramme");
+        histo.setNomfichier("histogramme");
         int largeur=256*2;
         int longueur=max;
-        histo1.setLargeur(largeur);
-        histo1.setLongueur(longueur);
+        System.out.println(max);
+        histo.setLargeur(largeur);
+        histo.setLongueur(longueur);
         
         ArrayList<Integer> tableau = new ArrayList();
         for(int j=0;j<largeur;j++){
@@ -81,8 +83,7 @@ public class Histogramme {
             }
         }
         
-        histo1.setTableau(tableau);
-        histo=histo1;
+        histo.setTableau(tableau);
     }
 }
 

@@ -27,7 +27,13 @@ public class Write {
            buffer.newLine();
            buffer.write("255");
            buffer.newLine();
-           while ()
+           while (count+1 != test.tableau.size()){
+               if (count%70==0) {
+                   buffer.newLine();
+               }
+           buffer.write(test.tableau.get(count)+" ");
+           count ++;
+           }
        }
         catch (FileNotFoundException ex) {
                    ex.printStackTrace();
