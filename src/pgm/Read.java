@@ -50,7 +50,7 @@ public class Read {
      * @param nomfichier
      */
     public void setNomfichier(String nomfichier) {
-        this.nomfichier = nomfichier;
+        this.filename= nomfichier;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Read {
      * @param longueur
      */
     public void setLongueur(int longueur) {
-        this.longueur = longueur;
+        this.hauteur = longueur;
     }
 
     /**
@@ -82,7 +82,7 @@ public class Read {
      * @return
      */
     public String getNomfichier() {
-        return nomfichier;
+        return filename;
     }
 
     /**
@@ -90,7 +90,7 @@ public class Read {
      * @return
      */
     public int getLongueur() {
-        return longueur;
+        return hauteur;
     }
 
     /**
