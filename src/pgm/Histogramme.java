@@ -1,7 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package pgm;
 
 import java.util.ArrayList;
@@ -16,23 +14,49 @@ public class Histogramme {
     private Read histo;
     private ArrayList<Integer> detail;
 
+    /**
+     *création d'un histogramme à partir d'une image
+     * @param i
+     */
     public Histogramme(Read i) {
-        image = i;
-    }
+       image = i;
+       creerHistogramme();
+        }
 
+    /**
+     * renvoie l'histogramme
+     * @return 
+     */
+    
+    public Read getHisto() {
+        return histo;
+    }
+    
+    
+
+    /**
+     *création d'un tableau regroupant le nombre d'apparition de chaque valeur de niveaux de gris
+     */
     public void creerDetail() {
 
+        ArrayList<Integer> details = new ArrayList();
         for (int i = 0; i < 256; i++) {
-            detail.add(i, 0);
+            details.add(i, 0);
         }
 
         for (int j = 0; j < image.getTableau().size(); j++) {
             
-            detail.add(image.getTableau().get(j), detail.get(image.getTableau().get(j)) +  1);
+            details.add(image.getTableau().get(j), details.get(image.getTableau().get(j)) +  1);
         }
+        detail=details;
+    
     }
     
+    /**
+     * création d'histogramme au format image
+     */
     public void creerHistogramme(){
+        Read histo1 = new Read("");
         creerDetail();
         int max=0;
         for(int i=0;i<256;i++){
@@ -40,11 +64,11 @@ public class Histogramme {
                 max=detail.get(i);
             }
         }
-        histo.setNomfichier("histogramme");
+        histo1.setNomfichier("histogramme");
         int largeur=256*2;
         int longueur=max;
-        histo.setLargeur(largeur);
-        histo.setLongueur(longueur);
+        histo1.setLargeur(largeur);
+        histo1.setLongueur(longueur);
         
         ArrayList<Integer> tableau = new ArrayList();
         for(int j=0;j<largeur;j++){
@@ -57,7 +81,8 @@ public class Histogramme {
             }
         }
         
-        histo.setTableau(tableau);
+        histo1.setTableau(tableau);
+        histo=histo1;
     }
 }
 

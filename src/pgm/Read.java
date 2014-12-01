@@ -22,17 +22,17 @@ public class Read {
      */
     public String nomfichier;
     /**
-     *
+     * longueur (hauteur) de l'image
      */
     public int longueur;
     /**
-     *
+     * largeur de l'image
      */
     public int largeur;
     /**
-     *
+     * tableau des valeurs de niveaux de gris
      */
-    public ArrayList tableau;
+    public ArrayList<Integer> tableau;
 
     /**
      * Le constructeur 
@@ -44,6 +44,72 @@ public class Read {
         this.longueur=0;
         this.tableau= new ArrayList();
     }
+
+    /**
+     * 
+     * @param nomfichier
+     */
+    public void setNomfichier(String nomfichier) {
+        this.nomfichier = nomfichier;
+    }
+
+    /**
+     *
+     * @param longueur
+     */
+    public void setLongueur(int longueur) {
+        this.longueur = longueur;
+    }
+
+    /**
+     *
+     * @param largeur
+     */
+    public void setLargeur(int largeur) {
+        this.largeur = largeur;
+    }
+
+    /**
+     *
+     * @param tableau
+     */
+    public void setTableau(ArrayList<Integer> tableau) {
+        this.tableau = tableau;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getNomfichier() {
+        return nomfichier;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getLongueur() {
+        return longueur;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getLargeur() {
+        return largeur;
+    }
+
+    /**
+     * renvoie le tableau défini ci dessus
+     * @return
+     */
+    public ArrayList<Integer> getTableau() {
+        return tableau;
+    }
+    
+   
  
     
     /**
