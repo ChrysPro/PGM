@@ -32,7 +32,13 @@ public class Histogramme {
         return histo;
     }
     
-    
+     /**
+     * renvoie le detail
+     * @return 
+     */
+    public ArrayList<Integer> getDetail() {
+        return detail;
+    }
 
     /**
      *création d'un tableau regroupant le nombre d'apparition de chaque valeur de niveaux de gris
@@ -64,6 +70,7 @@ System.out.println(image.getTableau().size());
                 max=detail.get(i);
             }
         }
+        
         System.out.println("max : " + max);
         histo.setNomfichier("histogramme");
         int largeur=256;
@@ -73,15 +80,16 @@ System.out.println(image.getTableau().size());
         
         ArrayList<Integer> tableau = new ArrayList();
         for(int k=0;k<longueur*largeur;k++){
-            tableau.add(k,255);
+            tableau.add(0);
         }
         for(int j=0;j<largeur;j++){
             for(int i=0;i<longueur;i++){
-                if(detail.get(j)>longueur-i){
-                    tableau.set(i*largeur+j, 0);
+                if(detail.get(j)>=longueur-i){
+                    tableau.set(i*largeur+j, 255);
                 }
             }
         }
+        
         histo.setTableau(tableau);
     }
 }
