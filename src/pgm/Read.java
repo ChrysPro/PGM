@@ -38,6 +38,14 @@ public class Read {
      */
     String commentaire;
 
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
     /**
      * Le constructeur 
      * @param filename
@@ -61,7 +69,7 @@ public class Read {
      *
      * @param longueur
      */
-    public void setLongueur(int longueur) {
+    public void setHauteur(int longueur) {
         this.hauteur = longueur;
     }
 
@@ -93,7 +101,7 @@ public class Read {
      *
      * @return
      */
-    public int getLongueur() {
+    public int getHauteur() {
         return hauteur;
     }
 
