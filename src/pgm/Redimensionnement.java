@@ -149,7 +149,6 @@ public class Redimensionnement {
              
             
             for(int j=0; j<image.getLongueur();j++){
-                System.out.println(j*image.getLargeur()+b);
                 int z = (int)(image.getTableau().get(j*image.getLargeur()+b)*d+newTableau.get(j*newLargeur+i));
                 newTableau.set(j*newLargeur+i,z);
                 
