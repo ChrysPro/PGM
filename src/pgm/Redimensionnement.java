@@ -19,7 +19,7 @@ public class Redimensionnement {
     }
     
     
-    public void setHauteur(int newHauteur){
+    public Read setHauteur(int newHauteur){
         
         int r=newHauteur/image.getLongueur();//Ratio de redimensionnement
         int a=0;//1-reste à utiliser de l'image à redimensionner
@@ -36,6 +36,7 @@ public class Redimensionnement {
         newImage.setLargeur(image.getLargeur());
         newImage.setLongueur(newHauteur);
         
+        return newImage;
     }
     
     public void parLigne(Read image, int r, int a, int b, int i, ArrayList<Integer> newTableau){
@@ -61,7 +62,7 @@ public class Redimensionnement {
         }
     }
     
-    public void setLargeur(int newLargeur){
+    public Read setLargeur(int newLargeur){
         
         int r=newLargeur/image.getLargeur();//Ratio de redimensionnement
         int a=0;//1-reste à utiliser de l'image à redimensionner
@@ -80,6 +81,8 @@ public class Redimensionnement {
         newImage.setTableau(newTableau);
         newImage.setLargeur(newLargeur);
         newImage.setLongueur(image.getLongueur());
+        
+        return newImage;
         
     }
     
