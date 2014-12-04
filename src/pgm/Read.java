@@ -69,7 +69,7 @@ public class Read {
      *
      * @param longueur
      */
-    public void setHauteur(int longueur) {
+    public void setLongueur(int longueur) {
         this.hauteur = longueur;
     }
 
@@ -101,7 +101,7 @@ public class Read {
      *
      * @return
      */
-    public int getHauteur() {
+    public int getLongueur() {
         return hauteur;
     }
 
