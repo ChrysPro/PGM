@@ -173,22 +173,25 @@ public class Read {
     /**
      *Fonction qui permet de lire intégralement le fichier pgm et de l'insérer dans les attributs de la classe Read
      */
-    public void lecture() {
+    public String lecture() {
         //Read lect=new Read(filename);
         try {
+            String tester="";
             String ligne;
             String mot;
             int test=0;
             BufferedReader buffer = new BufferedReader(new FileReader(filename));
              while ((ligne = buffer.readLine()) !=null){
-                //System.out.println(ligne);
+                tester=tester+ligne;
                test=this.creerObjet(ligne, test);
                 }
-             }
+             System.out.println(tester);
+             return tester;}
         catch (Exception e) {
             e.printStackTrace();
+            return "Error";
 }
-   System.out.println(this.tableau.size());}
+}
 }
     
 
