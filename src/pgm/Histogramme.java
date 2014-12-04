@@ -46,7 +46,7 @@ public class Histogramme {
 System.out.println(image.getTableau().size());
         for (int j = 0; j < image.getTableau().size() ; j++) {
             
-            detail.add(image.getTableau().get(j), detail.get(image.getTableau().get(j)) +  1);
+            detail.set(image.getTableau().get(j), detail.get(image.getTableau().get(j)) +  1);
             //System.out.println(j);
         }
 
@@ -73,12 +73,12 @@ System.out.println(image.getTableau().size());
         
         ArrayList<Integer> tableau = new ArrayList();
         for(int k=0;k<longueur*largeur;k++){
-            tableau.add(k,0);
+            tableau.add(k,255);
         }
         for(int j=0;j<largeur;j++){
             for(int i=0;i<longueur;i++){
                 if(detail.get(j)>longueur-i){
-                    tableau.add(i*largeur+j, 255);
+                    tableau.set(i*largeur+j, 0);
                 }
             }
         }

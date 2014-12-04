@@ -33,22 +33,6 @@ public class Read {
      * tableau des valeurs de niveaux de gris
      */
     public ArrayList<Integer> tableau;
-    /*
-     * Commentaire de l'image
-     */
-    String commentaire;
-
-    public String getCommentaire() {
-        return commentaire;
-    }
-
-    public void setCommentaire(String commentaire) {
-        if (commentaire.charAt(0)=='#') {
-        this.commentaire = commentaire;
-        } else {
-         this.commentaire="# "+commentaire;
-        }
-    }
 
     /**
      * Le constructeur 
@@ -144,8 +128,6 @@ public class Read {
                     break;
                 //La ligne commençant par # annonce que la prochaine ligne concernera les dimensions de l'image
                 case "#":
-                 // On a repéré la ligne de commentaire
-                    this.commentaire=ligne;
                 // la variable test permet de considerer de maniere particulière les 2 lignes après le dièse.
                         test=1;                
                     break;
@@ -177,25 +159,22 @@ public class Read {
     /**
      *Fonction qui permet de lire intégralement le fichier pgm et de l'insérer dans les attributs de la classe Read
      */
-    public String lecture() {
+    public void lecture() {
         //Read lect=new Read(filename);
         try {
-            String tester="";
             String ligne;
             String mot;
             int test=0;
             BufferedReader buffer = new BufferedReader(new FileReader(filename));
              while ((ligne = buffer.readLine()) !=null){
-                tester=tester+ligne;
+                //System.out.println(ligne);
                test=this.creerObjet(ligne, test);
                 }
-             System.out.println(tester);
-             return tester;}
+             }
         catch (Exception e) {
             e.printStackTrace();
-            return "Error";
 }
-}
+   System.out.println(this.tableau.size());}
 }
     
 

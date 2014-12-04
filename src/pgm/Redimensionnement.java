@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class Redimensionnement {
     
     Read image;
+    int b;
+    double a;
     
     public Redimensionnement(Read im){
         image=im;
@@ -21,15 +23,19 @@ public class Redimensionnement {
     
     public Read setHauteur(int newHauteur){
         
-        int r=newHauteur/image.getLongueur();//Ratio de redimensionnement
-        int a=0;//1-reste à utiliser de l'image à redimensionner
-        int b=0;//ligne courante de l'image à redimensionner
+        double r = (Math.floor(((double)newHauteur/(double)image.getLargeur())*1000)/1000);//Ratio de redimensionnement
+        a=0;//1-reste à utiliser de l'image à redimensionner
+        b=0;//ligne courante de l'image à redimensionner
         Read newImage = new Read ("redimLongueur");//image redimensionné
-        ArrayList<Integer> newTableau=null;
+        ArrayList<Integer> newTableau = new ArrayList();
+        
+        for(int i=0;i<image.getLargeur()*newHauteur;i++){
+            newTableau.add(1);
+        }
         
         for(int i=0;i<newHauteur;i++){
             
-            this.parLigne(image, r, a, b, i, newTableau);
+            this.parLigne(image, r, i, newTableau);
         }
         
         newImage.setTableau(newTableau);
@@ -39,43 +45,53 @@ public class Redimensionnement {
         return newImage;
     }
     
-    public void parLigne(Read image, int r, int a, int b, int i, ArrayList<Integer> newTableau){
-        int c=0;//% de remplissage de la nouvelle ligne
-        int d;
+    public void parLigne(Read image, double r, int i, ArrayList<Integer> newTableau){
+        double c=0;//% de remplissage de la nouvelle ligne
+        double d;
         
-        while(c!=1){
-            if(r<=1-c){
-                d=r;
+        while(c<1 && b<image.getLongueur() ){
+            if(r-a<=1-c){
+                d=r-a;
             }else{
                 d=1-c;
             }
             
             for(int j=0; j<image.getLargeur();j++){
-                newTableau.add(j+i*image.getLargeur(),image.getTableau().get(j+b*image.getLargeur())*d);
-                c=c+d;
-                a=a+d;
+                double p = image.getTableau().get(j+b*image.getLargeur())*d;
+                int m = (int)p;
+                newTableau.set(j+i*image.getLargeur(), m);
+               
             }
+            
+             c=c+d;
+             a=a+d;
+                
             if(a==r){
+                a=0;
                 b++;
             }
+
             
         }
     }
     
     public Read setLargeur(int newLargeur){
         
-        int r=newLargeur/image.getLargeur();//Ratio de redimensionnement
-        int a=0;//1-reste à utiliser de l'image à redimensionner
-        int b=0;//colonne courante de l'image à redimensionner
+
+        double r = (Math.floor(((double)newLargeur/(double)image.getLargeur())*1000)/1000);//Ratio de redimensionnement
+        System.out.println("r = " + r + " " + image.getLargeur() + " " + newLargeur);
+        a=0;//1-reste à utiliser de l'image à redimensionner
+        b=0;//colonne courante de l'image à redimensionner
         Read newImage = new Read ("redimLargeur");//image redimensionné
-        ArrayList<Integer> newTableau=null;
+        ArrayList<Integer> newTableau = new ArrayList();
         for(int i=0;i<image.getLongueur()*newLargeur;i++){
-            newTableau.add(i,0);
+            newTableau.add(1);
         }
         
         for(int i=0;i<newLargeur;i++){
             
-            this.parColonne(image, r, a, b, i, newTableau);
+            this.parColonne(image, r, i, newTableau, newLargeur);
+
         }
         
         newImage.setTableau(newTableau);
@@ -87,30 +103,37 @@ public class Redimensionnement {
     }
     
     
-    public void parColonne(Read image, int r, int a, int b, int i, ArrayList newTableau){
-        int c=0;//% de remplissage de la nouvelle ligne
-        int d;
+    public void parColonne(Read image, double r, int i, ArrayList newTableau, int newLargeur){
+        double c = 0;//% de remplissage de la nouvelle ligne
+        double d = 0;
+  
         
-        while(c!=1){
-            if(r<=1-c){
-                d=r;
+        while(c<1){
+           
+            if(r-a<=1-c){
+                d=r-a;
             }else{
                 d=1-c;
             }
+             
             
-            for(int j=0; j<image.getLongueur();j++){
-                newTableau.add(j*image.getLongueur()+i,image.getTableau().get(j*image.getLongueur()+b)*d);
-                c=c+d;
-                a=a+d;
+            for(int j=0; j<image.getLongueur()-1;j++){
+                newTableau.set(j*newLargeur+i,image.getTableau().get(j*image.getLargeur()+b)*d);
+                
             }
+            c=c+d;
+            a=a+d;
             
             
             
             if(a==r){
                 b++;
+                a=0;
+                
             }
             
         }
+
     }
     
     
