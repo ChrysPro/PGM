@@ -31,17 +31,36 @@ public class RedimensionnementTest {
     /**
      * Test of setHauteur method, of class Redimensionnement.
      */
-    @Ignore
+
     @Test
     public void testSetHauteur() {
         System.out.println("setHauteur");
-        int newHauteur = 0;
-        Redimensionnement instance = null;
-        Read expResult = null;
+        int newHauteur = 3;
+        Read image = new Read("image");
+        image.setLargeur(10);
+        image.setLongueur(2);
+        ArrayList tableau = new ArrayList();
+        for(int j=0;j<20;j++){
+            tableau.add(j*10);
+        }
+        image.setTableau(tableau);
+
+        Redimensionnement instance = new Redimensionnement(image);
+        
+        ArrayList resultat = new ArrayList();
+        for(int j=0;j<10;j++){
+            resultat.add(j*10);
+        }
+        for(int j=10;j<20;j++){
+            resultat.add(((j-10)*10+j*10)/2);
+        }
+        for(int j=20;j<30;j++){
+            resultat.add((j-10)*10);
+        }
+        
         Read result = instance.setHauteur(newHauteur);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(resultat, result.getTableau());
+
     }
 
     /**
@@ -83,22 +102,41 @@ public class RedimensionnementTest {
     /**
      * Test of setLargeur method, of class Redimensionnement.
      */
-    @Ignore
+
     @Test
     public void testSetLargeur() {
         System.out.println("setLargeur");
-        int newLargeur = 0;
-        Redimensionnement instance = null;
-        Read expResult = null;
+        int newLargeur = 3;
+        Read image = new Read("image");
+        image.setLargeur(2);
+        image.setLongueur(10);
+        ArrayList tableau = new ArrayList();
+        for(int j=0;j<20;j++){
+            tableau.add(j*10);
+        }
+        image.setTableau(tableau);
+
+        Redimensionnement instance = new Redimensionnement(image);
+        
+        ArrayList resultat = new ArrayList();
+        for(int j=0;j<30;j++){
+            resultat.add(0);
+        }
+        for(int j=0;j<10;j++){
+            resultat.set(j*3,j*2*10);
+            resultat.set(j*3+1,(j*2*10+j*2*10+10)/2);
+            resultat.set(j*3+2,j*2*10+10);
+        }
+        
+        
         Read result = instance.setLargeur(newLargeur);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(resultat, result.getTableau());
     }
 
     /**
      * Test of parColonne method, of class Redimensionnement.
      */
+
     @Test
     public void testParColonne() {
         System.out.println("parColonne");
@@ -114,7 +152,7 @@ public class RedimensionnementTest {
         double r = 2;
         int i = 0;
         ArrayList newTableau = new ArrayList();
-        for(int j=0;j<9;j++){
+        for(int j=0;j<10;j++){
             for(int k=0;k<2;k++){
                 newTableau.add(0);      
             }
@@ -123,10 +161,10 @@ public class RedimensionnementTest {
         instance.parColonne(image, r, i, newTableau, newLargeur);
         
         ArrayList resultat = new ArrayList();
-        for(int j=0;j<18;j++){
+        for(int j=0;j<20;j++){
             resultat.add(0);
         }
-        for(int j=0;j<9;j++){
+        for(int j=0;j<10;j++){
             resultat.set(j*2,j);       
             resultat.set(j*2+1,0);
         }
