@@ -16,7 +16,7 @@ public class Histogramme {
 
     /**
      *création d'un histogramme à partir d'une image
-     * @param i
+     * @param i : pour l'image dont on cherche l'histogramme
      */
     public Histogramme(Read i) {
        image = i;

@@ -16,18 +16,27 @@ public class Redimensionnement {
     int b;
     double a;
     
+    /**
+     *
+     * @param im : image à redimensionner
+     */
     public Redimensionnement(Read im){
         image=im;
     }
     
-    
+    /**
+     * fonction qui modifie la hauteur d'une image
+     * 
+     * @param newHauteur : nouvelle hauteur de l'image
+     * @return : l'image redimensionnée
+     */
     public Read setHauteur(int newHauteur){
         
         double r = (Math.floor(((double)newHauteur/(double)image.getLargeur())*1000)/1000);//Ratio de redimensionnement
         a=0;//1-reste à utiliser de l'image à redimensionner
         b=0;//ligne courante de l'image à redimensionner
         Read newImage = new Read ("redimLongueur");//image redimensionné
-        ArrayList<Integer> newTableau = new ArrayList();
+        ArrayList<Integer> newTableau = new ArrayList();//tableau de l'image redimensionnée
         
         for(int i=0;i<image.getLargeur()*newHauteur;i++){
             newTableau.add(1);
@@ -45,6 +54,14 @@ public class Redimensionnement {
         return newImage;
     }
     
+    /**
+     * fonction qui rempli une à une les lignes de l'image redimensionnée
+     * 
+     * @param image : image à redimensionner
+     * @param r : Ratio de redimensionnement
+     * @param i : ligne du tableau de l'image redimensionnée dont on s'occupe
+     * @param newTableau : tableau partiellement rempli de l'image redimensionnée
+     */
     public void parLigne(Read image, double r, int i, ArrayList<Integer> newTableau){
         double c=0;//% de remplissage de la nouvelle ligne
         double d;
@@ -75,6 +92,12 @@ public class Redimensionnement {
         }
     }
     
+    /**
+     * fonction qui modifie la largeur d'une image
+     * 
+     * @param newLargeur : nouvelle largeur de l'image
+     * @return : l'image redimensionnée
+     */
     public Read setLargeur(int newLargeur){
         
 
@@ -83,7 +106,7 @@ public class Redimensionnement {
         a=0;//1-reste à utiliser de l'image à redimensionner
         b=0;//colonne courante de l'image à redimensionner
         Read newImage = new Read ("redimLargeur");//image redimensionné
-        ArrayList<Integer> newTableau = new ArrayList();
+        ArrayList<Integer> newTableau = new ArrayList();//tableau de l'image redimensionnée
         for(int i=0;i<image.getLongueur()*newLargeur;i++){
             newTableau.add(1);
         }
@@ -102,7 +125,15 @@ public class Redimensionnement {
         
     }
     
-    
+    /**
+     * fonction qui rempli une à une les colonnes de l'image redimensionnée
+     * 
+     * @param image : image à redimensionner
+     * @param r : Ratio de redimensionnement
+     * @param i : colonne du tableau de l'image redimensionnée dont on s'occupe
+     * @param newTableau : tableau partiellement rempli de l'image redimensionnée
+     * @param newLargeur : largeur de l'image redimensionnée
+     */
     public void parColonne(Read image, double r, int i, ArrayList newTableau, int newLargeur){
         double c = 0;//% de remplissage de la nouvelle ligne
         double d = 0;
