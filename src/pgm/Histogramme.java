@@ -80,12 +80,12 @@ System.out.println(image.getTableau().size());
         
         ArrayList<Integer> tableau = new ArrayList();
         for(int k=0;k<longueur*largeur;k++){
-            tableau.add(0);
+            tableau.add(255);
         }
         for(int j=0;j<largeur;j++){
             for(int i=0;i<longueur;i++){
                 if(detail.get(j)>=longueur-i){
-                    tableau.set(i*largeur+j, 255);
+                    tableau.set(i*largeur+j, 0);
                 }
             }
         }
