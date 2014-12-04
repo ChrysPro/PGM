@@ -33,6 +33,10 @@ public class Read {
      * tableau des valeurs de niveaux de gris
      */
     public ArrayList<Integer> tableau;
+    /*
+     * Commentaire de l'image
+     */
+    String commentaire;
 
     /**
      * Le constructeur 
@@ -128,6 +132,8 @@ public class Read {
                     break;
                 //La ligne commençant par # annonce que la prochaine ligne concernera les dimensions de l'image
                 case "#":
+                 // On a repéré la ligne de commentaire
+                    this.commentaire=ligne;
                 // la variable test permet de considerer de maniere particulière les 2 lignes après le dièse.
                         test=1;                
                     break;

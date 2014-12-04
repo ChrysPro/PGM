@@ -21,7 +21,7 @@ public class Write {
            buffer= new BufferedWriter(new FileWriter(filename));
            buffer.write("P2");
            buffer.newLine();
-           buffer.write("#");
+           buffer.write(test.commentaire);
            buffer.newLine();
            buffer.write(test.largeur+" "+test.hauteur);
            buffer.newLine();
