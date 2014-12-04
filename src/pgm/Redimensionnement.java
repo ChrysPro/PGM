@@ -22,6 +22,8 @@ public class Redimensionnement {
      */
     public Redimensionnement(Read im){
         image=im;
+        a=0;
+        b=0;
     }
     
     /**
@@ -134,7 +136,7 @@ public class Redimensionnement {
      * @param newTableau : tableau partiellement rempli de l'image redimensionnée
      * @param newLargeur : largeur de l'image redimensionnée
      */
-    public void parColonne(Read image, double r, int i, ArrayList newTableau, int newLargeur){
+    public void parColonne(Read image, double r, int i, ArrayList<Integer> newTableau, int newLargeur){
         double c = 0;//% de remplissage de la nouvelle ligne
         double d = 0;
   
@@ -149,7 +151,8 @@ public class Redimensionnement {
              
             
             for(int j=0; j<image.getLongueur()-1;j++){
-                newTableau.set(j*newLargeur+i,image.getTableau().get(j*image.getLargeur()+b)*d);
+                int z = (int)(image.getTableau().get(j*image.getLargeur()+b)*d);
+                newTableau.set(j*newLargeur+i,z);
                 
             }
             c=c+d;
