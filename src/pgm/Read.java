@@ -43,7 +43,11 @@ public class Read {
     }
 
     public void setCommentaire(String commentaire) {
+        if (commentaire.charAt(0)=='#') {
         this.commentaire = commentaire;
+        } else {
+         this.commentaire="# "+commentaire;
+        }
     }
 
     /**

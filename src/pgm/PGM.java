@@ -16,6 +16,10 @@ public class PGM {
     public static void main(String[] args) {
         Read image = new Read("lecture.pgm");
         image.lecture();
+        image.setCommentaire("Hello");
+        System.out.println(image.getCommentaire());
+        image.setCommentaire("# Hello");
+        System.out.println(image.getCommentaire());
         Histogramme histo = new Histogramme(image);
         System.out.println(histo.getHisto().getLargeur() + " " + histo.getHisto().getLongueur());
         for(int i=0;i<(histo.getHisto().getLargeur())*(histo.getHisto().getLongueur());i++) {
