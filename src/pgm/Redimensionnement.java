@@ -34,14 +34,14 @@ public class Redimensionnement {
      */
     public Read setHauteur(int newHauteur){
         
-        double r = (Math.floor(((double)newHauteur/(double)image.getLargeur())*1000)/1000);//Ratio de redimensionnement
+        double r = (Math.floor(((double)newHauteur/(double)image.getLongueur())*1000)/1000);//Ratio de redimensionnement
         a=0;//1-reste à utiliser de l'image à redimensionner
         b=0;//ligne courante de l'image à redimensionner
         Read newImage = new Read ("redimLongueur");//image redimensionné
         ArrayList<Integer> newTableau = new ArrayList();//tableau de l'image redimensionnée
         
         for(int i=0;i<image.getLargeur()*newHauteur;i++){
-            newTableau.add(1);
+            newTableau.add(0);
         }
         
         for(int i=0;i<newHauteur;i++){
@@ -76,8 +76,7 @@ public class Redimensionnement {
             }
             
             for(int j=0; j<image.getLargeur();j++){
-                double p = image.getTableau().get(j+b*image.getLargeur())*d;
-                int m = (int)p;
+                int m = (int)(image.getTableau().get(j+b*image.getLargeur())*d+newTableau.get(j+i*image.getLargeur()));
                 newTableau.set(j+i*image.getLargeur(), m);
                
             }
@@ -104,13 +103,12 @@ public class Redimensionnement {
         
 
         double r = (Math.floor(((double)newLargeur/(double)image.getLargeur())*1000)/1000);//Ratio de redimensionnement
-        System.out.println("r = " + r + " " + image.getLargeur() + " " + newLargeur);
         a=0;//1-reste à utiliser de l'image à redimensionner
         b=0;//colonne courante de l'image à redimensionner
         Read newImage = new Read ("redimLargeur");//image redimensionné
         ArrayList<Integer> newTableau = new ArrayList();//tableau de l'image redimensionnée
         for(int i=0;i<image.getLongueur()*newLargeur;i++){
-            newTableau.add(1);
+            newTableau.add(0);
         }
         
         for(int i=0;i<newLargeur;i++){
@@ -150,8 +148,9 @@ public class Redimensionnement {
             }
              
             
-            for(int j=0; j<image.getLongueur()-1;j++){
-                int z = (int)(image.getTableau().get(j*image.getLargeur()+b)*d);
+            for(int j=0; j<image.getLongueur();j++){
+                System.out.println(j*image.getLargeur()+b);
+                int z = (int)(image.getTableau().get(j*image.getLargeur()+b)*d+newTableau.get(j*newLargeur+i));
                 newTableau.set(j*newLargeur+i,z);
                 
             }
