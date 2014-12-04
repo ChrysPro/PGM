@@ -26,7 +26,6 @@ public class Write {
            buffer.write(test.largeur+" "+test.hauteur);
            buffer.newLine();
            buffer.write("255");
-           buffer.newLine();
            while (count+1 != test.tableau.size()){
                if (count%70==0) {
                    buffer.newLine();
